@@ -55,9 +55,9 @@ func MakeRangeRequest(startDate time.Time, endDate time.Time) []lib.DayValues {
 
 	var result lib.RangeResponse
 
-	err := json.Unmarshal(resp, &result)
-
-	lib.Check(err)
+	if err := json.Unmarshal(resp, &result); err != nil {
+		panic(err)
+	}
 
 	log.Printf("Found %d records of price..\n", len(result.Value))
 
