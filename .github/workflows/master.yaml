@@ -48,10 +48,10 @@ jobs:
         fetch-depth: 0
     
     - name: Build Windows
-      if: startsWith(matrix.os, 'windows')
+      if: matrix.config.os == 'windows-latest'
       run: go build -v -o dist/go_get_dolar-${{ matrix.platform }}_${{ needs.version.outputs.current-version }}.exe . 
     - name: Build
-      if: matrix.os != 'windows-latest'
+      if: matrix.config.os != 'windows-latest'
       run: go build -v -o dist/go_get_dolar-${{ matrix.platform }}_${{ needs.version.outputs.current-version }} . 
     # - name: Create Release
     #   id: create_release
