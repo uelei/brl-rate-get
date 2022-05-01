@@ -1,5 +1,5 @@
 on: [push, pull_request]
-name: Test
+name: Pull request test
 jobs:
   lint:
     name: Lint files
@@ -24,4 +24,5 @@ jobs:
       with:
         go-version: ${{ matrix.go-version }}
     - uses: actions/checkout@v3
+    - run: go vet .
     - run: go test ./... -v -cover

@@ -3,7 +3,7 @@ on:
     branches:
       - main
 
-name: Test Across Matrix
+name: Build master branch
 
 jobs:
   test:
@@ -55,3 +55,11 @@ jobs:
       with:
         name: my-artifact
         path: dist/*
+
+    - name: Version  
+      id: version  
+      uses: juliansangillo/tag-version@v1  
+      with:  
+        production-branch: master  
+        test-branch: test  
+        dev-branch: develop
