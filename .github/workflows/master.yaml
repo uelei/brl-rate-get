@@ -33,12 +33,19 @@ jobs:
       with:  
         fetch-depth: 0
     
+    - name: Get next version
+      uses: reecetech/version-increment@2022.2.4
+      id: version
+      with:
+        scheme: semver
+        increment: patch
+
     - name: Build Windows
       if: matrix.os == 'windows-latest'
-      run: go build -v -o dist/go_get_dolar-${{ matrix.platform }}.exe . 
+      run: go build -v -o dist/go_get_dolar-${{ matrix.platform }}_${{ steps.version.outputs.version }}.exe . 
     - name: Build
       if: matrix.os != 'windows-latest'
-      run: go build -v -o dist/go_get_dolar-${{ matrix.platform }} . 
+      run: go build -v -o dist/go_get_dolar-${{ matrix.platform }}_${{ steps.version.outputs.version }} . 
     # - name: Create Release
     #   id: create_release
     #   uses: actions/create-release@v1
@@ -57,11 +64,3 @@ jobs:
       with:
         name: my-artifact
         path: dist/*
-
-    - name: Version  
-      id: version  
-      uses: juliansangillo/tag-version@v1  
-      with:  
-        production-branch: main  
-        test-branch: test  
-        dev-branch: develop
