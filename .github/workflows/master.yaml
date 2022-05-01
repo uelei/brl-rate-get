@@ -17,7 +17,7 @@ jobs:
         with:
           scheme: semver
           increment: patch
-  test:
+  build:
     needs: version
     ## We want to define a strategy for our job
     strategy:
@@ -47,10 +47,10 @@ jobs:
     
     - name: Build Windows
       if: matrix.os == 'windows-latest'
-      run: go build -v -o dist/go_get_dolar-${{ matrix.platform }}_${{ needs.version.outputs.version }}.exe . 
+      run: go build -v -o dist/go_get_dolar-${{ matrix.platform }}_${{ needs.version.outputs.current-version }}.exe . 
     - name: Build
       if: matrix.os != 'windows-latest'
-      run: go build -v -o dist/go_get_dolar-${{ matrix.platform }}_${{ needs.version.outputs.version }} . 
+      run: go build -v -o dist/go_get_dolar-${{ matrix.platform }}_${{ needs.version.outputs.current-version }} . 
     # - name: Create Release
     #   id: create_release
     #   uses: actions/create-release@v1
