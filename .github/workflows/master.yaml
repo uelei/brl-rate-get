@@ -31,8 +31,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
     
+    - name: Build Windows
+      if: matrix.os == 'windows-latest'
+      run: go build -v -o dist/go_get_dolar-${{ matrix.platform }}.exe . 
     - name: Build
-      run: go build -v -o dist/go_get_dolar-${{ matrix.platform }} .
+      if: matrix.os != 'windows-latest'
+      run: go build -v -o dist/go_get_dolar-${{ matrix.platform }} . 
     # - name: Create Release
     #   id: create_release
     #   uses: actions/create-release@v1
