@@ -17,6 +17,8 @@ jobs:
         with:
           scheme: semver
           increment: patch
+  outputs:
+     current-version: ${{ steps.version.outputs.version }}
   build:
     needs: version
     ## We want to define a strategy for our job
