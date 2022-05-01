@@ -32,7 +32,7 @@ func (r *RangeCmd) Run(ctx *Context) error {
 	results := client.MakeRangeRequest(datestart, dateend)
 
 	lib.WriteResultsToCSV(results, fmt.Sprintf("usd_brl_%s-%s.csv",
-		datestart.Format("2006-02-01"), dateend.Format("2006-02-01")))
+		datestart.Format("2006-01-02"), dateend.Format("2006-01-02")))
 
 	log.Println("Done")
 	return nil

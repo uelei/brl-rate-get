@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strings"
 	"time"
 )
 
@@ -42,7 +43,7 @@ func WriteResultsToCSV(results []DayValues, filename string) {
 
 	_, _ = datawriter.WriteString(header)
 	for _, data := range results {
-		datecut := data.DataHoraCotacao[:10]
+		datecut := strings.Replace(data.DataHoraCotacao[:10], "-", "", -1)
 		res := fmt.Sprintf("%s,%0.4f,%0.4f\n", datecut, data.CotacaoCompra, data.CotacaoVenda)
 
 		_, _ = datawriter.WriteString(res)
