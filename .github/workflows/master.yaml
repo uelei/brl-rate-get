@@ -7,14 +7,17 @@ name: Build master branch
 
 jobs:
   version:
+    runs-on: ubuntu-latest
     steps:
-    - name: Get next version
-      uses: reecetech/version-increment@2022.2.4
-      id: version
-      with:
-        scheme: semver
-        increment: patch
- test:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Get next version
+        uses: reecetech/version-increment@2022.2.4
+        id: version
+        with:
+          scheme: semver
+          increment: patch
+  test:
     needs: version
     ## We want to define a strategy for our job
     strategy:
