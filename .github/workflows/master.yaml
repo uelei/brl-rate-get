@@ -6,7 +6,15 @@ on:
 name: Build master branch
 
 jobs:
-  test:
+  version:
+    - name: Get next version
+      uses: reecetech/version-increment@2022.2.4
+      id: version
+      with:
+        scheme: semver
+        increment: patch
+ test:
+    needs: version
     ## We want to define a strategy for our job
     strategy:
       ## this will contain a matrix of all of the combinations
