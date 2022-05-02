@@ -82,11 +82,21 @@ jobs:
           release_name: Release ${{ needs.version.outputs.current-version }}
           draft: false
           prerelease: false
-      # - uses: actions/download-artifact@v3
-      #   with:
-      #     name: my-artifact
-      - name: Display structure of downloaded files
-        run: ls -R
+      - name: Download Artifact windows-latest
+        uses: actions/download-artifact@v3
+        with:
+          name: go_get_dolar-windows-latest_${{ needs.version.outputs.current-version }}.exe
+          path: ./dist
+      - name: Download Artifact macos-latest
+        uses: actions/download-artifact@v3
+        with:
+          name: go_get_dolar-macos-latest_${{ needs.version.outputs.current-version }}
+          path: ./dist
+      - name: Download Artifact ubuntu-latest
+        uses: actions/download-artifact@v3
+        with:
+          name: go_get_dolar-ubuntu-latest_${{ needs.version.outputs.current-version }}
+          path: ./dist
       - name: Upload Release Asset
         if: matrix.platform != 'windows-latest'
         id: upload-release-asset 
