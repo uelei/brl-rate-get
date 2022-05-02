@@ -97,14 +97,9 @@ jobs:
         with:
           name: go_get_dolar-ubuntu-latest_${{ needs.version.outputs.current-version }}
           path: ./dist
-      - name: Upload Release Asset
-        if: matrix.platform != 'windows-latest'
-        id: upload-release-asset 
-        uses: actions/upload-release-asset@v1
+      - name: Upload release binaries
+        uses: alexellis/upload-assets@0.2.2
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: "./dist/*"
-          asset_name: "*"
-          asset_content_type: application/octet-stream
+          asset_paths: '["./dist/*"]'
