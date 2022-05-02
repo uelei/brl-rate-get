@@ -82,6 +82,11 @@ jobs:
           release_name: Release ${{ needs.version.outputs.current-version }}
           draft: false
           prerelease: false
+      - uses: actions/download-artifact@v3
+        with:
+          name: my-artifact
+      - name: Display structure of downloaded files
+        run: ls -R
       - name: Upload Release Asset
         if: matrix.platform != 'windows-latest'
         id: upload-release-asset 
