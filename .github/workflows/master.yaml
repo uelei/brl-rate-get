@@ -18,7 +18,7 @@ jobs:
           scheme: semver
           increment: patch
     outputs:
-      current-version: ${{ steps.version.outputs.version }}
+      current-version: v${{ steps.version.outputs.version }}
   build:
     needs: version
     ## We want to define a strategy for our job
@@ -102,4 +102,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
-          asset_paths: '["./dist/*"]'
+          asset_paths: '["/home/runner/work/go_dolar_get/go_dolar_get/dist/*"]'
