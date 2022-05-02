@@ -97,9 +97,8 @@ jobs:
         with:
           name: go_get_dolar-ubuntu-latest_${{ needs.version.outputs.current-version }}
           path: dist
-      - name: Upload release binaries
-        uses: alexellis/upload-assets@0.2.2
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
+      - name: Upload Assets to Release with a wildcard
+        uses: csexton/release-asset-action@v2
         with:
-          asset_paths: '["/home/runner/work/go_dolar_get/go_dolar_get/dist/*"]'
+          pattern: "./dist/*"
+          github-token: ${{ secrets.GITHUB_TOKEN }}
