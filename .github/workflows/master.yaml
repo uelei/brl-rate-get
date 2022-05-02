@@ -60,7 +60,6 @@ jobs:
       with:
         name: go_get_dolar-${{ matrix.platform }}_${{ needs.version.outputs.current-version }}.exe
         path: dist/go_get_dolar-${{ matrix.platform }}_${{ needs.version.outputs.current-version }}.exe
-
     - name: Upload Artifact
       if: matrix.platform != 'windows-latest'
       uses: actions/upload-artifact@v2
@@ -91,6 +90,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: dist/go_get_dolar-${{ matrix.platform }}_${{ needs.version.outputs.current-version }}
-          asset_name: go_get_dolar-${{ matrix.platform }}_${{ needs.version.outputs.current-version }}
+          asset_path: "./dist/*"
+          asset_name: "*"
           asset_content_type: application/octet-stream
