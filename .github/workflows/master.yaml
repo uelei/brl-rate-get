@@ -86,17 +86,17 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: go_get_dolar-windows-latest_${{ needs.version.outputs.current-version }}.exe
-          path: ./dist
+          path: dist
       - name: Download Artifact macos-latest
         uses: actions/download-artifact@v3
         with:
           name: go_get_dolar-macos-latest_${{ needs.version.outputs.current-version }}
-          path: ./dist
+          path: dist
       - name: Download Artifact ubuntu-latest
         uses: actions/download-artifact@v3
         with:
           name: go_get_dolar-ubuntu-latest_${{ needs.version.outputs.current-version }}
-          path: ./dist
+          path: dist
       - name: Upload release binaries
         uses: alexellis/upload-assets@0.2.2
         env:
