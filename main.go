@@ -2,11 +2,12 @@ package main
 
 import (
 	"fmt"
+	"log"
+	"time"
+
 	"github.com/alecthomas/kong"
 	"github.com/uelei/go_dolar_get/client"
 	lib "github.com/uelei/go_dolar_get/lib"
-	"log"
-	"time"
 )
 
 type Context struct {
@@ -19,7 +20,6 @@ type RangeCmd struct {
 }
 
 func (r *RangeCmd) Run(ctx *Context) error {
-
 	datestart, err := time.Parse("2006-01-02", r.Start)
 
 	lib.Check(err)
