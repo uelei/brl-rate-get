@@ -13,7 +13,6 @@ func Check(e error) {
 	if e != nil {
 		// log.Fatalln(e)
 		panic(e)
-
 	}
 }
 
@@ -29,7 +28,6 @@ type RangeResponse struct {
 }
 
 func WriteResultsToCSV(results []DayValues, filename string) {
-
 	log.Printf("Writing a file.")
 	os.Remove(filename)
 
@@ -54,7 +52,5 @@ func WriteResultsToCSV(results []DayValues, filename string) {
 }
 
 func FormatDateToBC(date time.Time) string {
-
 	return date.Format("01-02-2006")
-
 }
