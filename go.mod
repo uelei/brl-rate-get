@@ -1,4 +1,4 @@
-module github.com/uelei/go_dolar_get
+module github.com/uelei/go-dollar-get
 
 go 1.17
 
