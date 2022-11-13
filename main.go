@@ -6,8 +6,8 @@ import (
 	"time"
 
 	"github.com/alecthomas/kong"
-	"github.com/uelei/go_dolar_get/client"
-	lib "github.com/uelei/go_dolar_get/lib"
+	"github.com/uelei/go-dollar-get/client"
+	lib "github.com/uelei/go-dollar-get/lib"
 )
 
 type Context struct {

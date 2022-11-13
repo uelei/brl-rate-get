@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/uelei/go_dolar_get/lib"
+	"github.com/uelei/go-dollar-get/lib"
 )
 
 func Test_Check(t *testing.T) {

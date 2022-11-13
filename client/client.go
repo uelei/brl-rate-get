@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/uelei/go_dolar_get/lib"
+	"github.com/uelei/go-dollar-get/lib"
 )
 
 // HTTPClient interface
