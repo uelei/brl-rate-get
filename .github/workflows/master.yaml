@@ -28,10 +28,10 @@ jobs:
       matrix:
         go-version: ['1.17']
         platform: [ubuntu-latest, macos-latest, windows-latest]
-    
+
     ## Defines the platform for each test run
     runs-on: ${{ matrix.platform }}
-    
+
     ## the steps that will be run through for each version and platform
     ## combination
     steps:
@@ -44,31 +44,31 @@ jobs:
     ## checks out our code locally so we can work with the files
     - name: Checkout code
       uses: actions/checkout@v2
-      with:  
+      with:
         fetch-depth: 0
-    
+
     - name: Build Windows
       if: matrix.platform == 'windows-latest'
-      run: go build -v -o dist/go_get_dolar-${{ matrix.platform }}_${{ needs.version.outputs.current-version }}.exe . 
+      run: go build -v -o dist/brl-rate-get-${{ matrix.platform }}_${{ needs.version.outputs.current-version }}.exe .
     - name: Build
       if: matrix.platform != 'windows-latest'
-      run: go build -v -o dist/go_get_dolar-${{ matrix.platform }}_${{ needs.version.outputs.current-version }} . 
+      run: go build -v -o dist/brl-rate-get-${{ matrix.platform }}_${{ needs.version.outputs.current-version }} .
 
     - name: Upload Artifact Windows
       if: matrix.platform == 'windows-latest'
       uses: actions/upload-artifact@v2
       with:
-        name: go_get_dolar-${{ matrix.platform }}_${{ needs.version.outputs.current-version }}.exe
-        path: dist/go_get_dolar-${{ matrix.platform }}_${{ needs.version.outputs.current-version }}.exe
+        name: brl-rate-get-${{ matrix.platform }}_${{ needs.version.outputs.current-version }}.exe
+        path: dist/brl-rate-get-${{ matrix.platform }}_${{ needs.version.outputs.current-version }}.exe
     - name: Upload Artifact
       if: matrix.platform != 'windows-latest'
       uses: actions/upload-artifact@v2
       with:
-        name: go_get_dolar-${{ matrix.platform }}_${{ needs.version.outputs.current-version }}
-        path: dist/go_get_dolar-${{ matrix.platform }}_${{ needs.version.outputs.current-version }}
+        name: brl-rate-get-${{ matrix.platform }}_${{ needs.version.outputs.current-version }}
+        path: dist/brl-rate-get-${{ matrix.platform }}_${{ needs.version.outputs.current-version }}
   release:
     runs-on: ubuntu-latest
-    needs: 
+    needs:
       - version
       - build
     steps:
@@ -85,17 +85,17 @@ jobs:
       - name: Download Artifact windows-latest
         uses: actions/download-artifact@v3
         with:
-          name: go_get_dolar-windows-latest_${{ needs.version.outputs.current-version }}.exe
+          name: brl-rate-get-windows-latest_${{ needs.version.outputs.current-version }}.exe
           path: dist
       - name: Download Artifact macos-latest
         uses: actions/download-artifact@v3
         with:
-          name: go_get_dolar-macos-latest_${{ needs.version.outputs.current-version }}
+          name: brl-rate-get-macos-latest_${{ needs.version.outputs.current-version }}
           path: dist
       - name: Download Artifact ubuntu-latest
         uses: actions/download-artifact@v3
         with:
-          name: go_get_dolar-ubuntu-latest_${{ needs.version.outputs.current-version }}
+          name: brl-rate-get-ubuntu-latest_${{ needs.version.outputs.current-version }}
           path: dist
       - name: Upload Assets to Release with a wildcard
         uses: csexton/release-asset-action@v2
