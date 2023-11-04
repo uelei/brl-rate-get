@@ -49,10 +49,10 @@ jobs:
 
     - name: Build Windows
       if: matrix.platform == 'windows-latest'
-      run: go build -v -o dist/brl-rate-get-${{ matrix.platform }}_${{ needs.version.outputs.current-version }}.exe .
+      run: go build -v -o dist/brl-rate-get-${{ matrix.platform }}_${{ needs.version.outputs.current-version }}.exe ./cmd/brl-rate-get/
     - name: Build
       if: matrix.platform != 'windows-latest'
-      run: go build -v -o dist/brl-rate-get-${{ matrix.platform }}_${{ needs.version.outputs.current-version }} .
+      run: go build -v -o dist/brl-rate-get-${{ matrix.platform }}_${{ needs.version.outputs.current-version }} ./cmd/brl-rate-get/
 
     - name: Upload Artifact Windows
       if: matrix.platform == 'windows-latest'
