@@ -37,7 +37,7 @@ func MakeRangeRequest(startDate time.Time, endDate time.Time, currency string, f
 	filtered := []DayValues{}
 
 	for i := range result.Value {
-		if (result.Value[i].TipoBoletim == "Fechamento") || (filter == false) {
+		if (result.Value[i].TipoBoletim == "Fechamento") || (!filter) {
 			filtered = append(filtered, DayValues{CotacaoCompra: result.Value[i].CotacaoCompra, CotacaoVenda: result.Value[i].CotacaoVenda, DataHoraCotacao: result.Value[i].DataHoraCotacao})
 		}
 	}
