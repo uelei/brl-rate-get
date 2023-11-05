@@ -2,7 +2,17 @@
  
 This is a small project to fetch data from BCB (Brazilian Central Bank) to get
 all exchanges rates between a currency and BRL
- 
+
+## To Install
+
+```bash
+go install github.com/uelei/brl-rate-get@latest
+
+# OR
+
+go install github.com/uelei/brl-rate-get@v0.0.18
+```
+
 ## Help
  
 ```bash 
