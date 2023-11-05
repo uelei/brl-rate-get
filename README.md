@@ -10,7 +10,7 @@ go install github.com/uelei/brl-rate-get@latest
 
 # OR
 
-go install github.com/uelei/brl-rate-get@v0.0.18
+go install github.com/uelei/brl-rate-get@v0.0.20
 ```
 
 ## Help
