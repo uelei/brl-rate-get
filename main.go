@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 	"strings"
-	"uelei/brl-rate-get/pkg"
+	"github.com/uelei/brl-rate-get/pkg"
 )
 
 func handle_get(currency string) {
