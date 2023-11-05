@@ -4,7 +4,7 @@ import (
 	"os"
 	"testing"
 	"time"
-	lib "uelei/brl-rate-get/pkg"
+	lib "github.com/uelei/brl-rate-get/pkg"
 )
 
 func TestWriteResultsToCSV(t *testing.T) {
