@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"os"
 	"strings"
+	"time"
+
 	"github.com/uelei/brl-rate-get/pkg"
 )
 
@@ -12,7 +14,11 @@ func handle_get(currency string) {
 
 	yesterday := brlrateget.GenerateYesterdayString()
 
-	rates := brlrateget.MakeRangeRequest(yesterday, yesterday, currency)
+	currentTime := time.Now()
+
+	currency = strings.ToUpper(currency)
+
+	rates := brlrateget.MakeRangeRequest(yesterday, currentTime, currency, false)
 
 	brlrateget.FormatGetResult(rates, currency)
 }
@@ -32,7 +38,7 @@ func handle_range(args []string) {
 
 	currency := args[0]
 
-	rates := brlrateget.MakeRangeRequest(start_date, end_date, strings.ToUpper(currency))
+	rates := brlrateget.MakeRangeRequest(start_date, end_date, strings.ToUpper(currency), true)
 	filename := fmt.Sprintf("%s_brl_%s-%s.csv", currency,
 		start_date.Format("2006-01-02"), end_date.Format("2006-01-02"))
 	brlrateget.WriteResultsToCSV(rates, filename)
@@ -55,7 +61,7 @@ func main() {
 	case *rangeCmd:
 		handle_range(flag.Args())
 	case *getCmd:
-		handle_get(strings.ToUpper(flag.Args()[0]))
+		handle_get(flag.Args()[0])
 	default:
 		fmt.Println("You must pass a command")
 	}

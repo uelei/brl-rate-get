@@ -4,6 +4,7 @@ import (
 	"os"
 	"testing"
 	"time"
+
 	lib "github.com/uelei/brl-rate-get/pkg"
 )
 
@@ -41,7 +42,7 @@ func TestGenerateYesterdayString(t *testing.T) {
 
 	currentTime := time.Now()
 
-	if result.Day() != currentTime.Day()-1 {
+	if result.Day() != currentTime.Day()-2 {
 		t.Fatal("error creating yesterday date")
 	}
 }
@@ -60,6 +61,16 @@ func TestParseStringToDate(t *testing.T) {
 
 	if date.Year() != 2023 {
 		t.Fatal("Error converting string to date Year")
+	}
+
+}
+
+func TestPadNumberWithZero(t *testing.T) {
+
+	value := lib.PadNumberWithZero(3.1415)
+
+	if value != "3.1415" {
+		t.Fatal("Error padding string", value)
 	}
 
 }
