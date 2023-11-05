@@ -16,7 +16,9 @@ func handle_get(currency string) {
 
 	currentTime := time.Now()
 
-	rates := brlrateget.MakeRangeRequest(yesterday, currentTime, strings.ToUpper(currency), false)
+	currency = strings.ToUpper(currency)
+
+	rates := brlrateget.MakeRangeRequest(yesterday, currentTime, currency, false)
 
 	brlrateget.FormatGetResult(rates, currency)
 }
