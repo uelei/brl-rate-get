@@ -14,7 +14,7 @@ func GenerateYesterdayString() time.Time {
 	currentTime := time.Now()
 
 	// Calculate yesterday's date
-	yesterday := currentTime.AddDate(0, 0, -1)
+	yesterday := currentTime.AddDate(0, 0, -2)
 
 	return yesterday
 }
@@ -56,21 +56,27 @@ func ParseStringToDate(dateString string) time.Time {
 		fmt.Println(error)
 		panic(error)
 	}
-
 	return date
 }
 
+func PadNumberWithZero(value float64) string {
+    return fmt.Sprintf("%.4f", value)
+}
+
 func FormatGetResult(rates []DayValues, currency string) {
+
+	rate := rates[len(rates)-1]
 
 	fmt.Println("")
 	fmt.Println("____________________________________")
 	fmt.Println("|#######====================#######|")
 	fmt.Println("|#  BRL         ", currency, "             #|")
 	fmt.Println("|#         ====                   #|")
-	fmt.Println("|#               Buy:  ", rates[0].CotacaoCompra, "   #|")
-	fmt.Println("|#  1,00         Sell: ", rates[0].CotacaoVenda, "   #|")
+	fmt.Println("|#               Buy:  ", PadNumberWithZero(rate.CotacaoCompra), "   #|")
+	fmt.Println("|#  1,00         Sell: ", PadNumberWithZero(rate.CotacaoVenda), "   #|")
 	fmt.Println("|#                                #|")
 	fmt.Println("|##==============================##|")
-	fmt.Println("------------------------------------")
+	fmt.Println("|    Rate Date  ", rate.DataHoraCotacao[:10] , "       |")
+	fmt.Println(" ---------------------------------- ")
 
 }

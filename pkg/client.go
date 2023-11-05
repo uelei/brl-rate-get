@@ -18,7 +18,7 @@ func format_url(base_url string, currency string, start_data string, end_data st
 	return formatedUrl
 }
 
-func MakeRangeRequest(startDate time.Time, endDate time.Time, currency string) []DayValues {
+func MakeRangeRequest(startDate time.Time, endDate time.Time, currency string, filter bool) []DayValues {
 
 	formatedUrl := format_url("", currency, FormatDateToBC(startDate), FormatDateToBC(endDate))
 	resp, err := GetDataFromUrl(formatedUrl)
@@ -31,16 +31,19 @@ func MakeRangeRequest(startDate time.Time, endDate time.Time, currency string) [
 	if err := json.Unmarshal(resp, &result); err != nil {
 		panic(err)
 	}
+
 	log.Printf("Found %d records of price..\n", len(result.Value))
 
 	filtered := []DayValues{}
 
 	for i := range result.Value {
-		if result.Value[i].TipoBoletim == "Fechamento" {
+		if (result.Value[i].TipoBoletim == "Fechamento") || (filter == false) {
 			filtered = append(filtered, DayValues{CotacaoCompra: result.Value[i].CotacaoCompra, CotacaoVenda: result.Value[i].CotacaoVenda, DataHoraCotacao: result.Value[i].DataHoraCotacao})
 		}
 	}
 
-	log.Printf("Found %d records of fechamento price..\n", len(filtered))
+	if filter {
+		log.Printf("Found %d records of fechamento price..\n", len(filtered))
+	}
 	return filtered
 }

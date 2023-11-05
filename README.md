@@ -24,28 +24,27 @@ Usage of brl-rate-get:
         To get a range of closing currency rates
 ```
 
-## To use
+## How to use the -get command
 
-To get yesterday close of a currency
+To get last rate of a currency
 
 ```bash 
 brl-rate-get -get usd
-
-2023/11/04 21:27:27 Found 5 records of price..
-2023/11/04 21:27:27 Found 1 records of fechamento price..
+2023/11/05 09:17:38 Found 5 records of price..
 
 ____________________________________
 |#######====================#######|
-|#  BRL          USD              #|
+|#  BRL          eur              #|
 |#         ====                   #|
-|#               Buy:   4.8904    #|
-|#  1,00         Sell:  4.8912    #|
+|#               Buy:   5.2474    #|
+|#  1,00         Sell:  5.2500    #|
 |#                                #|
 |##==============================##|
-------------------------------------
+|    Rate Date   2023-11-03        |
+ ----------------------------------
 ```
 
-## To use
+## How to use the -range command
 
 To get a range of data from April first until April 10 use
 
