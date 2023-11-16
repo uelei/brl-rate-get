@@ -42,7 +42,7 @@ func TestGenerateYesterdayString(t *testing.T) {
 
 	currentTime := time.Now()
 
-	if result.Day() != currentTime.Day()-2 {
+	if result.Day() != currentTime.Day()-4 {
 		t.Fatal("error creating yesterday date")
 	}
 }
